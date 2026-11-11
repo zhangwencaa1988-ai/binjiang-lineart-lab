@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fffaf0"><meta name="description" content="从杨浦滨江建筑出发，观察轮廓、比较提线、亲手取舍，创作简洁而有特点的建筑图形。"><title>建筑图形概括工坊</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<svg class="symbols" aria-hidden="true"><defs>
+<symbol id="i-flower" viewBox="0 0 32 32"><path d="M16 6c-9-12-18 9-7 10-12 9 9 18 10 7 9 12 18-9 7-10C25 2 4 11 16 20c12 9 12-15 0-14Z"/><circle cx="16" cy="16" r="4"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5h16v-5"/></symbol>
+<symbol id="i-crop" viewBox="0 0 24 24"><path d="M7 3v14h14M3 7h14v14M19 5l-2 2M5 19l2-2"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24"><path d="m4 16 12-12 4 4L8 20H4Zm10-10 4 4"/></symbol>
+<symbol id="i-eraser" viewBox="0 0 24 24"><path d="m4 13 9-9 7 7-9 9H7l-5-5Zm5-5 7 7m-5 5h10"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M8 5 3 10l5 5m-5-5h11a7 7 0 0 1 0 14" transform="translate(0 -3)"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-save" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+<symbol id="i-full" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 1 10M4 3v6h6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M5 19 19 5"/></symbol>
+</defs></svg>
+<header class="mast"><div class="brand"><span class="seal"><svg><use href="#i-flower"/></svg></span><div><p class="kicker">盘扣的简洁美 · 杨浦滨江</p><h1>建筑图形概括工坊</h1></div></div><div class="mast-actions"><button class="quiet" id="help"><svg><use href="#i-info"/></svg><span>玩法与知识</span></button><button class="icon-button" id="fullscreen" aria-label="全屏工坊" title="全屏工坊"><svg><use href="#i-full"/></svg></button></div></header>
+<main>
+<nav class="journey" aria-label="创作步骤"><button data-step="1" class="current"><b>1</b>观察建筑</button><i></i><button data-step="2"><b>2</b>提线实验</button><i></i><button data-step="3"><b>3</b>动手概括</button></nav>
+<div class="mobile-switch" aria-label="切换工作台"><button data-pane="source" aria-pressed="true">素材与实验</button><button data-pane="drawing" aria-pressed="false">我的概括画板</button></div>
+<div class="desk" data-pane="source">
+<section class="paper source-panel" aria-labelledby="sourceTitle">
+ <div class="section-head"><div><p class="eyebrow">素材台</p><h2 id="sourceTitle">从建筑里，找到主线</h2></div><button class="quiet compact" id="placeInfo" title="建筑介绍与资料"><svg><use href="#i-info"/></svg><span>地标故事</span></button></div>
+ <div class="source-tools"><label class="select-wrap"><span class="sr-only">选择建筑</span><select id="landmarkSelect" aria-label="选择杨浦滨江建筑"></select></label><button class="outline compact" id="upload"><svg><use href="#i-upload"/></svg>上传图片</button><input type="file" id="photoUpload" accept="image/png,image/jpeg,image/webp" hidden></div>
+ <div class="photo-wrap" id="photoStage"><canvas id="photoCanvas" aria-label="建筑原图，开启取景后可拖选主体"></canvas><div class="crop-shade" id="cropHint" hidden>拖出一个方框，只留下本次要表现的建筑</div><span class="photo-label" id="photoLabel">杨浦大桥</span><div class="drop-hint" id="dropHint" hidden>松开，载入你的建筑照片</div></div>
+ <div class="photo-tools"><div><button class="text-button" id="crop"><svg><use href="#i-crop"/></svg>框选主体</button><button class="text-button" id="applyCrop" hidden>应用取景</button><button class="text-button" id="resetCrop" hidden>恢复全图</button></div><span id="sourceSize"></span></div>
+ <p class="feature" id="featureHint">先看桥塔，再看桥面与拉索的关系。</p>
+ <div class="experiment-head"><b>提线实验</b><button class="text-button" id="thresholdHelp">阈值是什么？</button></div>
+ <div class="presets" aria-label="提线预设"><button data-preset="sensitive">多留一些</button><button data-preset="middle" class="active">适中起步</button><button data-preset="strict">少留一些</button></div>
+ <div class="parameters"><label for="low">低阈值 <output id="lowVal">39</output><span>接续较弱边缘</span></label><input type="range" id="low" min="0" max="255" value="39"><label for="high">高阈值 <output id="highVal">92</output><span>确定较强边缘</span></label><input type="range" id="high" min="0" max="255" value="92"><label for="smooth">平滑 <output id="smoothVal">1</output><span>减弱细小纹理</span></label><input type="range" id="smooth" min="0" max="3" value="1"></div>
+ <div class="generate-row"><button class="primary" id="generate"><svg><use href="#i-flower"/></svg><span id="generateLabel">提取线稿</span></button><button class="outline" id="restoreParams" title="恢复当前A版本使用的参数">回到 A 参数</button></div>
+ <p class="parameter-tip" id="parameterTip" role="status">先提线，再取舍。线越少，并不一定越好。</p>
+</section>
+<section class="paper drawing-panel" aria-labelledby="drawingTitle">
+ <div class="section-head"><div><p class="eyebrow">概括台</p><h2 id="drawingTitle">留下特征，画出简洁美</h2></div><button class="outline" id="save"><svg><use href="#i-save"/></svg>保存作品</button></div>
+ <div class="segments"><button data-mode="clean" aria-pressed="true">清理底稿</button><button data-mode="sketch" aria-pressed="false">手绘概括</button></div>
+ <div class="canvas-head"><div class="version-tabs"><button id="showA" aria-pressed="true" disabled>A 底稿</button><button id="showB" aria-pressed="false" disabled>B 对照</button><button class="text-button" id="setA" disabled>设为 A</button></div><button class="text-button peek" id="peek" aria-pressed="false"><svg><use href="#i-eye"/></svg>对照原图</button></div>
+ <div class="drawing-stage" id="drawingStage"><canvas id="drawingCanvas" aria-label="概括画板，可画主线、擦底稿或擦自己的笔迹" tabindex="0"></canvas><div class="drawing-empty" id="drawingEmpty"><svg><use href="#i-pen"/></svg><b>把建筑，留在线条里</b><p>在左边选好素材，点击“提取线稿”</p><span>然后亲手留下主线、去掉干扰</span></div><div class="busy" id="busy" hidden><span></span>正在寻找照片中的边缘…</div><span class="stage-badge" id="stageBadge" hidden>清理底稿 · 橡皮可直接去掉杂线</span></div>
+ <div class="tooltray"><div class="tools"><button data-tool="pen" aria-pressed="true" title="画主线"><svg><use href="#i-pen"/></svg><span>画主线</span></button><button data-tool="baseErase" aria-pressed="false" title="直接擦掉提取底稿中的线"><svg><use href="#i-eraser"/></svg><span>擦底稿</span></button><button data-tool="inkErase" aria-pressed="false" title="擦掉自己画的笔迹"><svg><use href="#i-eraser"/></svg><span>擦笔迹</span></button></div><div class="edit-actions"><button class="icon-button" id="undo" aria-label="撤销上一笔" title="撤销上一笔" disabled><svg><use href="#i-undo"/></svg></button><button class="text-button" id="resetDrawing" disabled>还原</button></div></div>
+ <div class="brush-row"><label for="brushSize">笔刷 <output id="brushVal">4</output></label><input type="range" id="brushSize" min="2" max="48" value="4"><label class="guide-toggle"><input type="checkbox" id="showGuide" checked>显示参考底稿</label><span id="strokeCount">0 笔取舍</span></div>
+ <p class="studio-tip" id="studioTip"><b>找主线</b> 抓住轮廓和主要结构；<b>去细节</b> 减少干扰与重复；<b>留特征</b> 对照照片检查。</p>
+ <div class="bottom-actions"><button class="outline" id="challenge">试试我的判断</button><button class="primary" id="finish">检查并保存 <span aria-hidden="true">→</span></button></div>
+</section>
+</div>
+</main>
+<footer><span>观察 · 取舍 · 表达</span><span>照片在本机处理，刷新前请保存作品</span><span id="appStatus" role="status">正在准备建筑素材…</span></footer>
+<dialog id="modal"><div class="modal-head"><h2 id="modalTitle"></h2><button class="icon-button" id="closeModal" aria-label="关闭弹窗"><svg><use href="#i-close"/></svg></button></div><div id="modalBody"></div></dialog>
+<div id="toast" role="status" hidden></div>
+<script type="module" src="app.js"></script>
+</body></html>
